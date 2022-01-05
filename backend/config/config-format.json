@@ -1,0 +1,9 @@
+{
+    "development": {
+      "username": "",
+      "password": "",
+      "database": "ProjectTrackingSystem",
+      "host": "",
+      "dialect": "mysql"
+    }
+}
