@@ -14,9 +14,7 @@ checkDuplicateEmail = (req, res, next) => {
             }
         }).then(user => {
             if(user) {
-                return res.status(400).json({
-                    message: "Email already exists"
-                });
+                return res.status(400).send("Email already exists");
             }
             next();
         });
@@ -28,9 +26,7 @@ checkDuplicateEmail = (req, res, next) => {
             }
         }).then(user => {
             if(user) {
-                return res.status(400).json({
-                    message: "Email or student number already exists"
-                });
+                return res.status(400).send("Email or student number already exists");
             }
             next();
         });

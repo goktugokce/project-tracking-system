@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as authenticationActions from "../../redux/actions/authActions";
+import {register} from "../../redux/actions/";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
@@ -15,6 +15,7 @@ import {
 import { Container, Row, Col } from "reactstrap";
 import { StudentRegisterForm } from "./StudentRegisterForm";
 import { SimpleRegisterForm } from "./SimpleRegisterForm";
+import "../../App.css";
 
 class Register extends Component {
   state = {
@@ -45,13 +46,14 @@ class Register extends Component {
       if (elem.name === "select") data["userType"] = elem.value;
       else data[elem.name] = elem.value;
     }
-    this.props.actions.register(data);
+
+    this.props.actions.register(data, this.props.history);
     //window.location.href = "/";
   };
 
   render() {
     const selectedForm =
-      this.state.userType == "student" ? (
+      this.state.userType === "student" ? (
         <StudentRegisterForm />
       ) : (
         <SimpleRegisterForm />
@@ -107,17 +109,17 @@ class Register extends Component {
                 </FormGroup>
 
                 {selectedForm}
-
-                <Button type="button" href="./Login" color="info">
+                <div className="button">
+                <Button  type="button" href="./login" color="danger">
                   Login
                 </Button>
                 <Button
                   type="submit"
-                  color="info"
-                  style={{ marginLeft: "60%" }}
+                  color="danger"
                 >
                   Register
                 </Button>
+                </div>
               </form>
             </Col>
             <Col xs="5">
@@ -133,7 +135,7 @@ class Register extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      register: bindActionCreators(authenticationActions.register, dispatch),
+      register: bindActionCreators(register, dispatch),
     },
   };
 }

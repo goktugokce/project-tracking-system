@@ -14,35 +14,23 @@ exports.signup = async (req, res) => {
             password: bycrypt.hashSync(req.body.password, 8),
             name: req.body.name,
             surname: req.body.surname
-        }).then(lec => {
-            res.status(200).json({
-                message: "Lecturer created successfully",
-                lec: lec
-            });
-        }).catch(err => {
-            res.status(400).json({
-                message: "Lecturer creation failed",
-                error: err
-            });
+        }).then(() => {
+            res.status(200).send("Lecturer created successfully");
+        }).catch(() => {
+            res.status(400).send("Lecturer creation failed");
         });
     }
     else if(req.body.userType === "student") {
         await Student.create({
-                studentNumber: req.body.studentNumber,
-                email: req.body.email,
-                password: bycrypt.hashSync(req.body.password, 8),
-                name: req.body.name,
-                surname: req.body.surname
-        }).then(std => {
-            res.status(200).json({
-                message: "Strudent created successfully",
-                std: std
-            });
-        }).catch(err => {
-            res.status(400).json({
-                message: "Student creation failed",
-                error: err
-            });
+            studentNumber: req.body.studentNumber,
+            email: req.body.email,
+            password: bycrypt.hashSync(req.body.password, 8),
+            name: req.body.name,
+            surname: req.body.surname
+        }).then(() => {
+            res.status(200).send("Student created successfully");
+        }).catch(() => {
+            res.status(400).send("Student creation failed");
         });
     }
 };

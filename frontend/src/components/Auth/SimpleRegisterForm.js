@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { Label, Input, FormGroup } from "reactstrap";
 
 export class SimpleRegisterForm extends Component {
