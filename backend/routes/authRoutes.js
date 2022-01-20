@@ -1,5 +1,5 @@
 const controller = require("../controllers/authController");
-const { verifySignUp } = require("../middleware");
+const { verifySignUp, getIfUserExists } = require("../middleware");
 
 
 module.exports = function(app) {
@@ -20,5 +20,9 @@ module.exports = function(app) {
     ],
     controller.signup
   );
+
+  app.post(
+    "/api/auth/signin",
+    controller.signin);
 
 };

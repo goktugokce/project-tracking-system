@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 
 // routes
 require('./routes/authRoutes')(app);
+require('./routes/userRoutes')(app);
 
 
 // set port, listen for requests

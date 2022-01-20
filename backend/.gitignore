@@ -11,3 +11,4 @@ package-lock.json
 *.gz
 
 config/config.json
+config/jwtConfig.js

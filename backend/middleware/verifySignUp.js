@@ -7,7 +7,6 @@ const Op = db.Sequelize.Op; // to use and/or operators in sequelize queries
 checkDuplicateEmail = (req, res, next) => { 
     let userType = req.body.userType;
     if(userType === "lecturer") {
-        console.log("");
         Lecturer.findOne({
             where: {
                 email: req.body.email
