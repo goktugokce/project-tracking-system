@@ -1,6 +1,6 @@
 import axiosInstance from "../../constants/axios";
 import { NotificationManager } from "react-notifications";
-import api_urls from '../../constants/api-urls.json';
+import api_urls from '../../constants/api-urls-format.json';
 
 export const register = (data, history) => async (dispatch) => {
   try {

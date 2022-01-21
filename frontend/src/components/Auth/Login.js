@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import {register} from "../../redux/actions/";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 import {
   Alert,
   Button,
@@ -13,11 +10,10 @@ import {
   Badge,
 } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-import { StudentRegisterForm } from "./StudentRegisterForm";
-import { SimpleRegisterForm } from "./SimpleRegisterForm";
 import "../../App.css";
+import { LoginForm } from "./LoginForm";
 
-class Register extends Component {
+class Login extends Component {
   state = {
     userType: "",
   };
@@ -47,17 +43,12 @@ class Register extends Component {
       else data[elem.name] = elem.value;
     }
 
-    this.props.actions.register(data, this.props.history);
+    console.log(form, data);
     //window.location.href = "/";
   };
 
   render() {
-    const selectedForm =
-      this.state.userType === "student" ? (
-        <StudentRegisterForm />
-      ) : (
-        <SimpleRegisterForm />
-      );
+    const selectedForm = <LoginForm/>
 
     return (
       <div>
@@ -82,7 +73,7 @@ class Register extends Component {
             <Col>
               <Breadcrumb>
                 <BreadcrumbItem active>
-                  <h4>Register</h4>
+                  <h4>Login</h4>
                 </BreadcrumbItem>
               </Breadcrumb>
             </Col>
@@ -117,7 +108,7 @@ class Register extends Component {
                   type="submit"
                   color="danger"
                 >
-                  Register
+                  Create Account
                 </Button>
                 </div>
               </form>
@@ -132,11 +123,4 @@ class Register extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      register: bindActionCreators(register, dispatch),
-    },
-  };
-}
-export default connect(null, mapDispatchToProps)(Register);
+export default Login;
