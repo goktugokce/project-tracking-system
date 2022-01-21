@@ -1,5 +1,5 @@
 const Course = require("../models/index")["Course"];
-
+const StudentCoursePair = require("../models/index")["StudentCoursePair"];
 
 
 exports.createCourse = async (req, res) => {
@@ -47,9 +47,10 @@ exports.updateCourse = async (req, res) => {
 }
 
 exports.getAllCourses = async (req, res) => {
+    const userType = req.userType;
     const userId = req.userId;
 
-    if(userId){
+    if(userType === "lecturer" && userId){
         await Course.findAll({
             where: {
                 lecturerId: userId,
@@ -61,13 +62,26 @@ exports.getAllCourses = async (req, res) => {
             res.status(400).send("Course fetch failed");
         });
     }
+    else if(userType === "student" && userId){
+        // StudentCoursePair
+        await StudentCoursePair.findAll({ 
+            where: {
+                studentId: userId,
+              },
+              include: Course }).then(courses => {
+            res.status(200).send(courses);
+        }).catch(() => {
+            res.status(400).send("Course fetch failed");
+        });
+    }
 }
 
 exports.getCourseById = async (req, res) => {
+    const userType = req.userType;
     const userId = req.userId;
     const courseId = req.params.id;
 
-    if(userId){
+    if(userType === "lecturer" && userId){
         await Course.findOne({
             where: {
                 id: courseId,
@@ -76,6 +90,20 @@ exports.getCourseById = async (req, res) => {
             res.status(200).send(course);
         }
         ).catch(() => {
+            res.status(400).send("Course fetch failed");
+        });
+    }
+    else if(userType === "student" && userId){
+        // StudentCoursePair
+        await StudentCoursePair.findOne({ 
+            where: {
+                studentId: userId,
+                courseId: courseId,
+              },
+              include: Course 
+            }).then(course => {
+            res.status(200).send(course);
+        }).catch(() => {
             res.status(400).send("Course fetch failed");
         });
     }
