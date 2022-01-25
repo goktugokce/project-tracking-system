@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Label, Input, FormGroup } from "reactstrap";
 
-export class LoginForm extends Component {
-  render() {
-    return (
-      <div>
-        <FormGroup>
+
+
+const LoginForm = () => {
+  return <div>
+    <FormGroup>
           <Label htmlFor="email">Email:</Label>
           <Input
             type="email"
@@ -21,7 +21,7 @@ export class LoginForm extends Component {
             placeholder="Enter your password."
           />
         </FormGroup>
-      </div>
-    );
-  }
-}
+  </div>;
+};
+
+export default LoginForm;
