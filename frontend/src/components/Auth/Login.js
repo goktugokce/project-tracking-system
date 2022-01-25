@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
 import "../../App.css";
-import { LoginForm } from "./LoginForm";
+import LoginForm from "./LoginForm";
 
 class Login extends Component {
   state = {
@@ -29,12 +29,14 @@ class Login extends Component {
       ...this.state,
       userType: e.target.value,
     });
+    console.log(e.target.value)
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.target;
+    console.log(form)
     const data = {};
     for (let i = 0; i < form.elements.length; i++) {
       const elem = form.elements[i];
