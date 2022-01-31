@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 // database
 const db = require("./models");
 
-// db.sequelize.sync(); // This creates tables if don't exist (and does nothing if already exists)
+db.sequelize.sync(); // This creates tables if don't exist (and does nothing if already exists)
 
 // simple route
 app.get("/", (req, res) => {
@@ -23,6 +23,7 @@ require('./routes/authRoutes')(app);
 require('./routes/userRoutes')(app);
 require('./routes/courseRoutes')(app);
 require('./routes/studentRoutes')(app);
+require('./routes/homeworkRoutes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
