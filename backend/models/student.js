@@ -24,7 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     name: DataTypes.STRING,
-    surname: DataTypes.STRING
+    surname: DataTypes.STRING,
+    confirmationCode: DataTypes.STRING,
+    status: {
+      type: DataTypes.ENUM("pending", "confirmed", "rejected"),
+      defaultValue: "pending"
+    }
   }, {
     sequelize,
     modelName: 'Student',
