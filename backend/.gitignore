@@ -12,3 +12,4 @@ package-lock.json
 
 config/config.json
 config/jwtConfig.js
+config/emailConfig.js
